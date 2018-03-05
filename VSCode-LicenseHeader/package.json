@@ -1,0 +1,56 @@
+{
+    "name": "licenseheader",
+    "displayName": "LicenseHeader",
+    "description": "custom MIT license header",
+    "version": "0.0.5",
+    "publisher": "DoubleWoodH",
+    "engines": {
+        "vscode": "^1.16.0"
+    },
+    "categories": [
+        "Other"
+    ],
+    "activationEvents": [
+        "onCommand:extension.licenseHeader"
+    ],
+    "main": "./out/src/extension",
+    "contributes": {
+        "configuration": {
+            "type": "object",
+            "title": "License header Configuration",
+            "properties": {
+                "licenseheader.Author": {
+                    "type": "string",
+                    "default": "DoubleWoodH",
+                    "description": "By default, created by."
+                },
+                "licenseheader.CopiedBy": {
+                    "type": "string",
+                    "default": "Copyright (c) 2017 DoubleWoodH",
+                    "description": "By default, copied by."
+                }
+            }
+        },
+        "keybindings": [
+            {
+                "command": "extension.licenseHeader",
+                "key": "cmd+shift+i",
+                "when": "editorTextFocus"
+            }
+        ]
+    },
+    "scripts": {
+        "vscode:prepublish": "npm run compile",
+        "compile": "tsc -p ./",
+        "watch": "tsc -watch -p ./",
+        "postinstall": "node ./node_modules/vscode/bin/install",
+        "test": "npm run compile && node ./node_modules/vscode/bin/test"
+    },
+    "devDependencies": {
+        "typescript": "^2.5.2",
+        "vscode": "^1.1.5",
+        "mocha": "^3.5.0",
+        "@types/node": "^7.0.43",
+        "@types/mocha": "^2.2.42"
+    }
+}
