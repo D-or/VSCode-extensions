@@ -29,7 +29,7 @@ eg:
      * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
      * SOFTWARE.
      */
-
+    
     /*
      * Revision History:
      *     Initial: 2017/08/21        DoubleWoodH
@@ -37,7 +37,7 @@ eg:
 
 ## Install
 
-    Press Cmd + Shift + I,type ext install licenseHeader.
+    Press Cmd + Shift + P, type ext install licenseHeader.
 
 ## Configuration
 
@@ -49,3 +49,7 @@ eg:
 ## Hot key
 
     Cmd + Shift + I, You can insert License in the head.
+
+## Contribution
+    This is a very simple and small project by a passionate student so any contribution is welcome and loved :+1:
+    GitHub: [https://github.com/DoubleWoodH/VSCode-extensions](https://github.com/DoubleWoodH/VSCode-extensions)
