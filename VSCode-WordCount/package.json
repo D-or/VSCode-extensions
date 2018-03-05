@@ -2,7 +2,7 @@
     "name": "word-count",
     "displayName": "Word Count",
     "description": "Count the number of word for all file type",
-    "version": "0.0.6",
+    "version": "0.0.7",
     "publisher": "DoubleWoodH",
     "engines": {
         "vscode": "^1.16.0"
