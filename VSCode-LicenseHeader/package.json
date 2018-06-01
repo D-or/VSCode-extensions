@@ -2,7 +2,7 @@
     "name": "licenseheader",
     "displayName": "LicenseHeader",
     "description": "custom MIT license header",
-    "version": "0.0.6",
+    "version": "1.0",
     "publisher": "DoubleWoodH",
     "engines": {
         "vscode": "^1.16.0"
@@ -19,6 +19,16 @@
             "type": "object",
             "title": "License header Configuration",
             "properties": {
+                "licenseheader.LicenseName": {
+                    "type": "string",
+                    "default": "MIT",
+                    "description": ""
+                },
+                "licenseheader.LicenseUrl": {
+                    "type": "string",
+                    "default": "https://raw.githubusercontent.com/facebook/react-native/master/LICENSE",
+                    "description": ""
+                },
                 "licenseheader.Author": {
                     "type": "string",
                     "default": "DoubleWoodH",
@@ -34,7 +44,8 @@
         "keybindings": [
             {
                 "command": "extension.licenseHeader",
-                "key": "cmd+shift+i",
+                "key": "ctrl+shift+i",
+                "mac": "cmd+shift+i",
                 "when": "editorTextFocus"
             }
         ]
@@ -52,5 +63,8 @@
         "mocha": "^3.5.0",
         "@types/node": "^7.0.43",
         "@types/mocha": "^2.2.42"
+    },
+    "dependencies": {
+        "axios": "^0.18.0"
     }
 }

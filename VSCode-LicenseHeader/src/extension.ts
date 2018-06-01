@@ -3,6 +3,9 @@
 // Import the module and reference it with the alias vscode in your code below
 import * as vscode from 'vscode';
 import { window, commands, Disposable, ExtensionContext, TextDocument } from 'vscode';
+import axios from 'axios';
+
+// import http = require('http');
 
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
@@ -42,21 +45,40 @@ class HeaderGenerator {
         // Get the current text editor 
         let editor = vscode.window.activeTextEditor;
         const config = vscode.workspace.getConfiguration('licenseheader');
+        const { CopiedBy, Author, LicenseName, LicenseUrl } = config;
 
         if (!editor) {
             return;
         }
 
-        // Define header content
-        var header = `/*\r * MIT License\n *\r * ${config.CopiedBy}\n *\r * Permission is hereby granted, free of charge, to any person obtaining a copy\n * of this software and associated documentation files (the 'Software'), to deal\n * in the Software without restriction, including without limitation the rights\n * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell\r * copies of the Software, and to permit persons to whom the Software is\n * furnished to do so, subject to the following conditions:\n *\r * The above copyright notice and this permission notice shall be included in all\n * copies or substantial portions of the Software.\n *\r * THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\n * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\n * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\n * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\n * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\n * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\n * SOFTWARE.\n */\n\r/*\n * Revision History:\n *     Initial: ${this.getTime()}      ${config.Author}\n */\n\r`;
+        vscode.window.showInformationMessage('Wait a minute.');
 
-        // Get the document
-        var doc = editor.document;
+        axios.get(LicenseUrl)
+            .then(response => {
+                let license = "(License Content)";
+                const { status, data } = response;
+                if (status === 200) {
+                    if (data.match(/<!DOCTYPE html>/)) {
+                        vscode.window.showWarningMessage('The provided url may be wrong.');
+                    } else {
+                        license = data;
+                    }
 
-        // Insert header
-        editor.edit((editor) => {
-            editor.insert(doc.positionAt(0), header);
-        });
+                    // Define header content
+                    let header = `/*\r * ${LicenseName} License\n *\r * ${CopiedBy}\n *\r ${license} \n */\n\r/*\n * Revision History:\n *     Initial:        ${this.getTime()}        ${Author}\n */\n\r`;
+
+                    // Get the document
+                    let doc = editor.document;
+
+                    // Insert header
+                    editor.edit((editor) => {
+                        editor.insert(doc.positionAt(0), header);
+                    });
+                }
+            })
+            .catch(error => {
+                vscode.window.showErrorMessage('There seems to be something wrong with your network.');
+            });
     }
 
     dispose() {
