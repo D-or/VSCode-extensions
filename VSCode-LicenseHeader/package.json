@@ -1,8 +1,8 @@
 {
     "name": "licenseheader",
     "displayName": "LicenseHeader",
-    "description": "custom MIT license header",
-    "version": "1.0",
+    "description": "Custom license header",
+    "version": "1.0.0",
     "publisher": "DoubleWoodH",
     "engines": {
         "vscode": "^1.16.0"
