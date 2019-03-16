@@ -1,5 +1,5 @@
 # Word Count
-It can count the number of words(Chinese, English and number) for any file type include Markdown!
+It can count the number of words(Chinese, English and number) for any file type include Markdown when you save the file!
 And it also can filter annotation!
 
 ## Contribution
