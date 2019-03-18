@@ -84,7 +84,7 @@ class WordCounterController {
     let subscriptions: vscode.Disposable[] = [];
     // vscode.window.onDidChangeTextEditorSelection(this._onEvent, this, subscriptions);
     // vscode.window.onDidChangeActiveTextEditor(this._onEvent, this, subscriptions);
-    vscode.workspace.onWillSaveTextDocument(this._onEvent, this, subscriptions);
+    vscode.workspace.onDidSaveTextDocument(this._onEvent, this, subscriptions);
 
     // create a combined disposable from both event subscriptions
     this._disposable = vscode.Disposable.from(...subscriptions);
