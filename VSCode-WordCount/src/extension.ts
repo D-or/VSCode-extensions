@@ -14,7 +14,7 @@ export function activate(context: vscode.ExtensionContext) {
   context.subscriptions.push(wordCounter);
 }
 
-class WordCounter {
+export class WordCounter {
 
   private _statusBarItem: vscode.StatusBarItem;
 
